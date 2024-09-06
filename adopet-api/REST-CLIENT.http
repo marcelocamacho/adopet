@@ -1,0 +1,31 @@
+@baseUrl=http://localhost:8080
+
+POST {{baseUrl}}/abrigos
+Content-Type:application/json
+
+{
+    "nome": "PetLove",
+    "telefone": "(91)8757-0944",
+    "email": "petlove@gmail.com"
+}
+
+###
+GET {{baseUrl}}/abrigos
+
+###
+GET {{baseUrl}}/abrigos/1/pets
+
+
+###
+POST {{baseUrl}}/abrigos/1/pets
+Content-Type: application/json
+
+{
+    "tipo": "CACHORRO",
+    "nome": "Bela",
+    "raca": "Vira-Lata",
+    "idade": 10,
+    "cor": "cinza e preto",
+    "peso": 5,
+    "adotado": false
+}
