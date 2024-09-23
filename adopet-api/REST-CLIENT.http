@@ -16,8 +16,8 @@ POST {{baseUrl}}/adocoes
 Content-Type: application/json
 
 {
-    "tutor": 1,
-    "pet": 1,
+    "idTutor": 1,
+    "idPet": 1,
     "motivo": "Companhia"
 }
 
