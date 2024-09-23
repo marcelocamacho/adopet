@@ -1,5 +1,4 @@
 package br.com.alura.adopet.api.service;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -7,11 +6,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmailService {
     
-    private final String FROM = "adopet@email.com.br";
+    private final String FROM = "adopet@localhost";
 
-    @Autowired
     private JavaMailSender emailSender;
-
+    
     public void enviarEmail(String to, String subject, String message){
 
 
@@ -20,7 +18,12 @@ public class EmailService {
         email.setTo(to);
         email.setSubject(subject);
         email.setText(message);
-        emailSender.send(email);
+        try{
+            emailSender.send(email);
+        } catch(Exception e){
+            System.out.println("|> Disparando erro!!!");
+        }
+        
 
 
     }
