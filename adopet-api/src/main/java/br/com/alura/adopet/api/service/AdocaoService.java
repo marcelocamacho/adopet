@@ -39,6 +39,10 @@ public class AdocaoService {
 
         Tutor tutor = tutorRepository.getReferenceById(dto.idTutor());
 
+        if(tutor == null){
+            throw new ValidacaoException("Tutor inválido!");
+        }
+
         if (pet.getAdotado() == true) {
             throw new ValidacaoException("Pet já foi adotado!");
         } else {
@@ -63,9 +67,7 @@ public class AdocaoService {
                 }
             }
         }
-        if(tutor == null){
-            throw new ValidacaoException("Tutor inválido!");
-        }
+
         
         Adocao adocao = new Adocao();
         adocao.setData(LocalDateTime.now());
