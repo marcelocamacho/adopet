@@ -1,0 +1,7 @@
+{
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 70,
+    "chat.editor.wordWrap": "on",
+    "notebook.output.wordWrap": true,
+    "java.compile.nullAnalysis.mode": "automatic"
+}
