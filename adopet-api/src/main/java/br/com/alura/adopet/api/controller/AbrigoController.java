@@ -1,6 +1,7 @@
 package br.com.alura.adopet.api.controller;
 
-import br.com.alura.adopet.api.dto.CadastraAbrigoDTO;
+import br.com.alura.adopet.api.dto.RespListaAbrigosDTO;
+import br.com.alura.adopet.api.dto.ReqCadastraAbrigoDTO;
 import br.com.alura.adopet.api.model.Abrigo;
 import br.com.alura.adopet.api.model.Pet;
 import br.com.alura.adopet.api.repository.AbrigoRepository;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -21,13 +23,21 @@ public class AbrigoController {
     private AbrigoRepository repository;
 
     @GetMapping
-    public ResponseEntity<List<Abrigo>> listar() {
-        return ResponseEntity.ok(repository.findAll());
+    public ResponseEntity<List<RespListaAbrigosDTO>> listar() {
+        List<Abrigo> abrigos = repository.findAll();
+        List<RespListaAbrigosDTO> dto = new ArrayList<>();
+        for(Abrigo abrigo : abrigos){
+            dto.add(
+                new RespListaAbrigosDTO(abrigo)
+            );
+        }
+        return ResponseEntity.ok(dto);
     }
 
     @PostMapping
     @Transactional
-    public ResponseEntity<String> cadastrar(@RequestBody @Valid CadastraAbrigoDTO dto) {
+    public ResponseEntity<String> cadastrar(@RequestBody @Valid ReqCadastraAbrigoDTO dto) {
+        //TODO: Passar toda essa lógica para um service.
         boolean nomeJaCadastrado = repository.existsByNome(dto.nome());
         boolean telefoneJaCadastrado = repository.existsByTelefone(dto.telefone());
         boolean emailJaCadastrado = repository.existsByEmail(dto.email());
@@ -47,6 +57,7 @@ public class AbrigoController {
     @GetMapping("/{idOuNome}/pets")
     public ResponseEntity<List<Pet>> listarPets(@PathVariable String idOuNome) {
         try {
+            //TODO: Esse cast por dar erro.
             Long id = Long.parseLong(idOuNome);
             List<Pet> pets = repository.getReferenceById(id).getPets();
             return ResponseEntity.ok(pets);
