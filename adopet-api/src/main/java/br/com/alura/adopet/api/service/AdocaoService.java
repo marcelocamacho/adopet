@@ -5,9 +5,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import br.com.alura.adopet.api.dto.AprovacaoAdocaoDTO;
-import br.com.alura.adopet.api.dto.ReprovacaoAdocaoDTO;
-import br.com.alura.adopet.api.dto.SolicitacaoAdotaoDTO;
+
+import br.com.alura.adopet.api.dto.ReqAprovacaoAdocaoDTO;
+import br.com.alura.adopet.api.dto.ReqReprovacaoAdocaoDTO;
+import br.com.alura.adopet.api.dto.ReqSolicitacaoAdotaoDTO;
 import br.com.alura.adopet.api.exception.ValidacaoException;
 import br.com.alura.adopet.api.model.Adocao;
 import br.com.alura.adopet.api.model.Pet;
@@ -33,7 +34,7 @@ public class AdocaoService {
     private EmailService emailService;
 ;
 
-    public void solicitar(SolicitacaoAdotaoDTO dto) { 
+    public void solicitar(ReqSolicitacaoAdotaoDTO dto) { 
 
         Pet pet = petRepository.getReferenceById(dto.idPet());
 
@@ -88,7 +89,7 @@ public class AdocaoService {
 
     }
     //TODO: disparar exceções
-    public void aprovar(AprovacaoAdocaoDTO dto) {
+    public void aprovar(ReqAprovacaoAdocaoDTO dto) {
         Adocao adocao = repository.getReferenceById(dto.idAdocao());
 
         adocao.setStatus(StatusAdocao.APROVADO);
@@ -107,7 +108,7 @@ public class AdocaoService {
     }
 
     //TODO: disparar exceções
-    public void reprovar(ReprovacaoAdocaoDTO dto) {
+    public void reprovar(ReqReprovacaoAdocaoDTO dto) {
         Adocao adocao = repository.getReferenceById(dto.idAdocao());
         adocao.setStatus(StatusAdocao.REPROVADO);
         adocao.setJustificativaStatus(dto.justificativa());
