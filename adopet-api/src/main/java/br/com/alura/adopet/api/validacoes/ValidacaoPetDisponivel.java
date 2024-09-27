@@ -9,7 +9,7 @@ import br.com.alura.adopet.api.model.Pet;
 import br.com.alura.adopet.api.repository.PetRepository;
 
 @Component
-public class ValidacaoPetDisponivel {
+public class ValidacaoPetDisponivel implements IValidacaoSolicitacaoAdocao {
 
     @Autowired
     private PetRepository petRepository;
