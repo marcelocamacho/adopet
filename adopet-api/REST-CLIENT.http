@@ -4,9 +4,9 @@ POST {{baseUrl}}/tutores
 Content-Type: application/json
 
 {
-    "nome": "Fulano2",
-    "telefone": "(91)8757-1000",
-    "email": "fulano2@gmail.com"
+    "nome": "Fulano3",
+    "telefone": "(97)8757-1000",
+    "email": "fulano3@gmail.com"
 }
 ###
 GET {{baseUrl}}/pets
@@ -16,8 +16,8 @@ POST {{baseUrl}}/adocoes
 Content-Type: application/json
 
 {
-    "idTutor": 1,
-    "idPet": 1,
+    "idTutor": 3,
+    "idPet": 2,
     "motivo": "Companhia"
 }
 
@@ -26,9 +26,9 @@ POST {{baseUrl}}/abrigos
 Content-Type:application/json
 
 {
-    "nome": "PetLove",
-    "telefone": "(91)8757-0944",
-    "email": "petlove@gmail.com"
+    "nome": "PetLove3",
+    "telefone": "(94)8757-0944",
+    "email": "petlove3@gmail.com"
 }
 
 ###
